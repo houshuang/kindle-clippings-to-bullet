@@ -56,8 +56,10 @@ const getDate = meta => {
   }
 };
 
+const titles = [];
 clippings.forEach(clip => {
   const [title, meta, ...rest] = clip.split("\n");
+  titles.push(title);
   if (title.match(titleSearch)) {
     retainTitle = title;
     if (!firstDate) {
@@ -77,6 +79,11 @@ clippings.forEach(clip => {
     clipStr += `    - ${noteStr}${rest.join("").trim()}${noteStr} ${pageStr}\n`;
   }
 });
+
+if (titleSearch === "listTitles") {
+  console.log([...new Set(titles)].map((x => `- ${x}`)).join("\n"));
+  process.exit(0);
+}
 
 let dateStr;
 if (firstDate && lastDate && firstDate !== lastDate) {
