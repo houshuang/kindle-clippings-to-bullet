@@ -75,8 +75,8 @@ clippings.forEach(clip => {
       }
     }
 
-    const noteStr = meta.includes("Note") ? "^^" : "";
-    clipStr += `    - ${noteStr}${rest.join("").trim()}${noteStr} ${pageStr}\n`;
+    const noteStr = meta.includes("Note") ? " - ^^" : "- ";
+    clipStr += `    ${noteStr}${rest.join("").trim()}${noteStr} ${pageStr}\n`;
   }
 });
 
